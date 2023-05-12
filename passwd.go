@@ -37,10 +37,11 @@ func UpdatePassword(config *Config, username, oldPasswd, newPasswd string) error
 		return fmt.Errorf("Password error: Unable to encode old password: %w", err)
 	}
 
-	newEncoded, err := utf16.NewEncoder().String(fmt.Sprintf(`"%s"`, newPasswd))
-	if err != nil {
-		return fmt.Errorf("Password error: Unable to encode new password: %w", err)
-	}
+	newEncoded := newPasswd
+	//newEncoded, err := utf16.NewEncoder().String(fmt.Sprintf(`"%s"`, newPasswd))
+	//if err != nil {
+	//	return fmt.Errorf("Password error: Unable to encode new password: %w", err)
+	//}
 
 	upn, err := config.UPN(username)
 	if err != nil {
